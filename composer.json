@@ -1,0 +1,32 @@
+{
+    "name": "dev-3bdulrahman/pos",
+    "description": "A Point of Sale (POS) module for Laravel ERP — Terminals, Shifts, Sessions, Sales & Payments.",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abdulrahman",
+            "homepage": "https://3bdulrahman.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3",
+        "laravel/framework": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dev3bdulrahman\\Pos\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dev3bdulrahman\\Pos\\Providers\\PosServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

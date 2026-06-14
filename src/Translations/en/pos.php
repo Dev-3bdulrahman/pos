@@ -1,0 +1,87 @@
+<?php
+
+return [
+    'title' => 'Point of Sale (POS)',
+    'terminals' => 'POS Terminals',
+    'shifts' => 'Cashier Shifts',
+    'register' => 'POS Register',
+    
+    // Terminals CRUD
+    'terminal_name' => 'Terminal Name',
+    'terminal_code' => 'Terminal Code',
+    'warehouse' => 'Deduction Warehouse',
+    'status' => 'Status',
+    'actions' => 'Actions',
+    'add_terminal' => 'Add Terminal',
+    'edit_terminal' => 'Edit Terminal',
+    'delete_terminal' => 'Delete Terminal',
+    'confirm_delete_terminal' => 'Are you sure you want to delete this terminal?',
+    'delete_confirm_text' => 'This action cannot be undone.',
+    'no_terminals' => 'No terminals found.',
+    'select_warehouse' => 'Select Warehouse',
+    
+    // General
+    'search' => 'Search',
+    'search_placeholder' => 'Search...',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    
+    // Shifts
+    'open_shift' => 'Open Shift',
+    'close_shift' => 'Close Shift',
+    'opening_balance' => 'Opening Balance',
+    'closing_balance' => 'Closing Balance',
+    'actual_closing_balance' => 'Actual Closing Cash',
+    'expected_closing_balance' => 'Expected Closing Cash',
+    'difference' => 'Difference',
+    'notes' => 'Notes',
+    'cashier' => 'Cashier',
+    'terminal' => 'Terminal',
+    'opened_at' => 'Opened At',
+    'closed_at' => 'Closed At',
+    'status_open' => 'Open',
+    'status_closed' => 'Closed',
+    'no_shifts' => 'No shifts found.',
+    
+    // Cash Drawer movements
+    'cash_in' => 'Cash In',
+    'cash_out' => 'Cash Out',
+    'amount' => 'Amount',
+    'reason' => 'Reason',
+    'cash_movement' => 'Cash drawer adjustment',
+    'log_movement' => 'Adjust Cash',
+    
+    // Register / POS Screen
+    'cart' => 'Cart',
+    'select_customer' => 'Select Customer',
+    'walk_in_customer' => 'Walk-in Customer',
+    'pay' => 'Pay & Checkout',
+    'checkout' => 'Checkout',
+    'total' => 'Total',
+    'subtotal' => 'Subtotal',
+    'discount' => 'Discount',
+    'tax' => 'Tax',
+    'receipt' => 'Receipt',
+    'print_receipt' => 'Print Receipt',
+    'sold_to' => 'Sold To',
+    'qty' => 'Qty',
+    'price' => 'Price',
+    'items' => 'Items',
+    'no_items_in_cart' => 'Cart is empty.',
+    'barcode_scan_or_search' => 'Search by name or scan barcode...',
+    'all_categories' => 'All Categories',
+    'payment_method' => 'Payment Method',
+    'cash' => 'Cash',
+    'card' => 'Card',
+    'split' => 'Split Payment',
+    
+    // Notifications & Success Alerts
+    'saved_success' => 'Saved successfully.',
+    'deleted_success' => 'Deleted successfully.',
+    'shift_opened_success' => 'Shift opened successfully.',
+    'shift_closed_success' => 'Shift closed successfully.',
+    'cash_movement_logged' => 'Cash drawer adjustment logged.',
+    'sale_processed_success' => 'Sale completed successfully.',
+];

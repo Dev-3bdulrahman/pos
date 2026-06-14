@@ -1,0 +1,87 @@
+<?php
+
+return [
+    'title' => 'نقاط البيع (POS)',
+    'terminals' => 'أجهزة نقاط البيع',
+    'shifts' => 'ورديات الكاشير',
+    'register' => 'شاشة البيع السريع',
+    
+    // Terminals CRUD
+    'terminal_name' => 'اسم الجهاز',
+    'terminal_code' => 'رمز الجهاز',
+    'warehouse' => 'مستودع الخصم',
+    'status' => 'الحالة',
+    'actions' => 'العمليات',
+    'add_terminal' => 'إضافة جهاز جديد',
+    'edit_terminal' => 'تعديل الجهاز',
+    'delete_terminal' => 'حذف الجهاز',
+    'confirm_delete_terminal' => 'هل أنت متأكد من حذف هذا الجهاز؟',
+    'delete_confirm_text' => 'لا يمكن التراجع عن هذا الإجراء.',
+    'no_terminals' => 'لم يتم العثور على أجهزة نقاط بيع.',
+    'select_warehouse' => 'اختر مستودع الخصم',
+    
+    // General
+    'search' => 'البحث',
+    'search_placeholder' => 'بحث...',
+    'save' => 'حفظ',
+    'cancel' => 'إلغاء',
+    'active' => 'نشط',
+    'inactive' => 'غير نشط',
+    
+    // Shifts
+    'open_shift' => 'فتح وردية',
+    'close_shift' => 'إغلاق الوردية',
+    'opening_balance' => 'رصيد الافتتاح',
+    'closing_balance' => 'رصيد الإغلاق',
+    'actual_closing_balance' => 'المبلغ الفعلي عند الإغلاق',
+    'expected_closing_balance' => 'المبلغ المتوقع عند الإغلاق',
+    'difference' => 'الفارق (العجز/الزيادة)',
+    'notes' => 'ملاحظات',
+    'cashier' => 'الكاشير',
+    'terminal' => 'جهاز نقطة البيع',
+    'opened_at' => 'تاريخ الفتح',
+    'closed_at' => 'تاريخ الإغلاق',
+    'status_open' => 'مفتوحة',
+    'status_closed' => 'مغلقة',
+    'no_shifts' => 'لم يتم العثور على ورديات.',
+    
+    // Cash Drawer movements
+    'cash_in' => 'إدخال نقدية (Cash In)',
+    'cash_out' => 'إخراج نقدية (Cash Out)',
+    'amount' => 'المبلغ',
+    'reason' => 'السبب',
+    'cash_movement' => 'تعديل النقدية بالصندوق',
+    'log_movement' => 'تعديل النقدية',
+    
+    // Register / POS Screen
+    'cart' => 'سلة المشتريات',
+    'select_customer' => 'اختر العميل',
+    'walk_in_customer' => 'عميل نقدي (Walk-in)',
+    'pay' => 'دفع وإتمام البيع',
+    'checkout' => 'الدفع والتحصيل',
+    'total' => 'الإجمالي',
+    'subtotal' => 'المجموع الفرعي',
+    'discount' => 'الخصم',
+    'tax' => 'الضريبة',
+    'receipt' => 'فاتورة البيع',
+    'print_receipt' => 'طباعة الفاتورة',
+    'sold_to' => 'بيع إلى',
+    'qty' => 'الكمية',
+    'price' => 'السعر',
+    'items' => 'المنتجات',
+    'no_items_in_cart' => 'سلة المشتريات فارغة.',
+    'barcode_scan_or_search' => 'ابحث باسم المنتج أو امسح الباركود...',
+    'all_categories' => 'كل الأقسام',
+    'payment_method' => 'طريقة الدفع',
+    'cash' => 'نقداً',
+    'card' => 'شبكة / بطاقة',
+    'split' => 'دفع متعدد (Split)',
+    
+    // Notifications & Success Alerts
+    'saved_success' => 'تم الحفظ بنجاح.',
+    'deleted_success' => 'تم الحذف بنجاح.',
+    'shift_opened_success' => 'تم فتح الوردية بنجاح.',
+    'shift_closed_success' => 'تم إغلاق الوردية بنجاح.',
+    'cash_movement_logged' => 'تم تسجيل حركة النقدية بنجاح.',
+    'sale_processed_success' => 'تم إتمام عملية البيع بنجاح.',
+];
