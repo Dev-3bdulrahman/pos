@@ -41,8 +41,8 @@
                     @forelse($terminals as $terminal)
                         <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 dark:text-white">{{ $terminal->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $terminal->code }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-750 dark:text-gray-300">{{ $terminal->warehouse?->translated_name ?? '-' }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $terminal->code }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">{{ $terminal->warehouse?->translated_name ?? '-' }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm">
                                 <span class="px-2.5 py-1 text-xs font-bold rounded-full {{ $terminal->status === 'active' ? 'bg-green-50 text-green-700 dark:bg-green-900/20' : 'bg-gray-100 text-gray-500 dark:bg-gray-800' }}">
                                     {{ __('pos::pos.' . $terminal->status) }}
