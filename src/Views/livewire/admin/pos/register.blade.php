@@ -25,7 +25,7 @@
                         <p class="text-xs text-gray-500 dark:text-gray-400">Terminal: <span class="font-bold text-blue-600">{{ $activeTerminal->name }} ({{ $activeTerminal->code }})</span></p>
                     </div>
                     <div class="w-full md:w-80 relative flex items-center">
-                        <input type="text" wire:model.live.debounce.300ms="productSearch" placeholder="{{ __('pos::pos.barcode_scan_or_search') }}" class="w-full ps-10 pe-4 py-2 text-sm bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                        <input type="text" wire:model.live.debounce.300ms="productSearch" placeholder="{{ __('pos::pos.barcode_scan_or_search') }}" class="w-full ps-10 pe-4 py-2.5 text-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
                         <i data-lucide="search" class="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none"></i>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 <!-- Cart Items List -->
                 <div class="flex-1 overflow-y-auto p-4 space-y-4">
                     @forelse($cart as $index => $item)
-                        <div class="flex items-start justify-between gap-3 p-3 bg-gray-50 dark:bg-gray-850 rounded-xl relative group">
+                        <div class="flex items-start justify-between gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl relative group">
                             <div class="space-y-1 flex-1">
                                 <h4 class="font-bold text-sm text-gray-900 dark:text-white leading-tight">{{ $item['name'] }}</h4>
                                 <div class="flex items-center gap-2 text-xs">
@@ -93,16 +93,16 @@
                 </div>
 
                 <!-- Summary calculations -->
-                <div class="p-4 bg-gray-50 dark:bg-gray-850/50 border-t border-gray-100 dark:border-gray-800 space-y-3 text-sm">
-                    <div class="flex justify-between text-gray-500">
+                <div class="p-4 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-100 dark:border-gray-800 space-y-3 text-sm">
+                    <div class="flex justify-between text-gray-500 dark:text-gray-400">
                         <span>{{ __('pos::pos.subtotal') }}</span>
                         <span class="font-bold text-gray-800 dark:text-gray-300">{{ number_format($this->subtotal, 2) }}</span>
                     </div>
-                    <div class="flex justify-between text-gray-500">
+                    <div class="flex justify-between text-gray-500 dark:text-gray-400">
                         <span>{{ __('pos::pos.discount') }}</span>
                         <input type="number" step="0.01" wire:model.live="cartDiscount" class="w-20 text-end py-0 px-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 rounded text-xs font-bold text-gray-800 dark:text-gray-300 focus:ring-1 focus:ring-blue-500">
                     </div>
-                    <div class="flex justify-between text-gray-500">
+                    <div class="flex justify-between text-gray-500 dark:text-gray-400">
                         <span>{{ __('pos::pos.tax') }} ({{ $cartTaxRate }}%)</span>
                         <span class="font-bold text-gray-800 dark:text-gray-300">{{ number_format($this->tax, 2) }}</span>
                     </div>
@@ -272,7 +272,7 @@
                     </div>
                 </div>
 
-                <div class="p-6 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-850 flex gap-2">
+                <div class="p-6 bg-gray-50 dark:bg-gray-800 border-t border-gray-100 dark:border-gray-800 flex gap-2">
                     <button onclick="window.print()" class="flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-all text-sm flex items-center justify-center gap-2">
                         <i data-lucide="printer" class="w-4 h-4"></i>
                         <span>{{ __('pos::pos.print_receipt') }}</span>

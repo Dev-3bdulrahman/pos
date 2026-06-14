@@ -45,9 +45,9 @@
                     @forelse($shifts as $shift)
                         <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 dark:text-white">{{ $shift->user?->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-550">{{ $shift->terminal?->name }} ({{ $shift->terminal?->code }})</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $shift->opened_at?->format('Y-m-d H:i') }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $shift->closed_at?->format('Y-m-d H:i') ?? '-' }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $shift->terminal?->name }} ({{ $shift->terminal?->code }})</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $shift->opened_at?->format('Y-m-d H:i') }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $shift->closed_at?->format('Y-m-d H:i') ?? '-' }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-750 dark:text-gray-300">{{ number_format($shift->opening_balance, 2) }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-750 dark:text-gray-300">
                                 @if($shift->status === 'open')
