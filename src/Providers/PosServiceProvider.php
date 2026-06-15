@@ -2,7 +2,12 @@
 
 namespace Dev3bdulrahman\Pos\Providers;
 
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Dev3bdulrahman\Pos\Events\PosSaleCompleted;
+use Dev3bdulrahman\Pos\Models\PosSale;
+use Dev3bdulrahman\Pos\Policies\PosPolicy;
 use Livewire\Livewire;
 
 class PosServiceProvider extends ServiceProvider
@@ -26,6 +31,9 @@ class PosServiceProvider extends ServiceProvider
 
         // Load translations
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'pos');
+
+        // Register Policies
+        Gate::policy(PosSale::class, PosPolicy::class);
 
         // Register Livewire Components
         if (class_exists(Livewire::class)) {

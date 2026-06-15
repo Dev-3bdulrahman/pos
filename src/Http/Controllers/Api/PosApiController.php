@@ -3,82 +3,100 @@
 namespace Dev3bdulrahman\Pos\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Dev3bdulrahman\Pos\Models\PosTerminal;
+use App\Traits\HasApiResponse;
+use Dev3bdulrahman\Pos\Http\Requests\Api\StorePosSaleApiRequest;
+use Dev3bdulrahman\Pos\Events\PosSaleCompleted;
+use Dev3bdulrahman\Pos\Models\PosSale;
 use Dev3bdulrahman\Pos\Services\PosService;
-use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class PosApiController extends Controller
 {
-    protected PosService $posService;
+    use HasApiResponse;
 
-    public function __construct(PosService $posService)
+    /**
+     * List all POS sales.
+     */
+    public function index(Request $request, PosService $service): JsonResponse
     {
-        $this->posService = $posService;
+        $this->authorize('viewAny', PosSale::class);
+
+        $companyId = $request->user()->company_id;
+        $perPage = (int) $request->get('per_page', 15);
+
+        $sales = PosSale::where('company_id', $companyId)
+            ->with(['items', 'payments', 'customer'])
+            ->latest()
+            ->paginate($perPage);
+
+        return $this->success(
+            $sales->items(),
+            __('POS sales retrieved successfully'),
+            200,
+            [
+                'current_page' => $sales->currentPage(),
+                'last_page' => $sales->lastPage(),
+                'per_page' => $sales->perPage(),
+                'total' => $sales->total(),
+            ]
+        );
     }
 
     /**
-     * Get active terminals for the company.
+     * Store a new POS sale.
      */
-    public function getTerminals(Request $request): JsonResponse
+    public function store(StorePosSaleApiRequest $request, PosService $service): JsonResponse
     {
-        $companyId = $request->header('X-Company-Id') ?? 1;
+        $this->authorize('create', PosSale::class);
 
-        $terminals = PosTerminal::where('company_id', $companyId)
-            ->where('status', 'active')
-            ->get();
+        $validated = $request->validated();
+        $user = $request->user();
 
-        return response()->json([
-            'success' => true,
-            'data'    => $terminals,
-        ]);
-    }
-
-    /**
-     * Store a new POS sale transaction from API.
-     */
-    public function storeSale(Request $request): JsonResponse
-    {
-        $request->validate([
-            'terminal_id'             => 'required|integer',
-            'created_by'              => 'required|integer',
-            'subtotal'                => 'required|numeric',
-            'discount'                => 'nullable|numeric',
-            'tax'                     => 'nullable|numeric',
-            'total'                   => 'required|numeric',
-            'items'                   => 'required|array|min:1',
-            'items.*.product_id'      => 'required|integer',
-            'items.*.quantity'        => 'required|numeric|min:0.01',
-            'items.*.unit_price'      => 'required|numeric',
-            'items.*.discount'        => 'nullable|numeric',
-            'items.*.tax'             => 'nullable|numeric',
-            'payments'                => 'required|array|min:1',
-            'payments.*.payment_method'=> 'required|string',
-            'payments.*.amount'       => 'required|numeric',
-            'payments.*.reference_number' => 'nullable|string',
-        ]);
-
-        $companyId = $request->header('X-Company-Id') ?? 1;
-        $data = $request->all();
-        $data['company_id'] = $companyId;
-
-        try {
-            $sale = $this->posService->processSale($data);
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Sale processed successfully.',
-                'data'    => [
-                    'id'   => $sale->id,
-                    'code' => $sale->code,
+        $data = [
+            'company_id' => $user->company_id,
+            'terminal_id' => $validated['terminal_id'],
+            'created_by' => $user->id,
+            'subtotal' => collect($validated['items'])->sum(fn ($item) => $item['quantity'] * $item['unit_price']),
+            'discount' => 0,
+            'tax' => 0,
+            'total' => collect($validated['items'])->sum(fn ($item) => $item['quantity'] * $item['unit_price']),
+            'items' => $validated['items'],
+            'payments' => [
+                [
+                    'payment_method' => $validated['payment_method'],
+                    'amount' => collect($validated['items'])->sum(fn ($item) => $item['quantity'] * $item['unit_price']),
                 ],
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage(),
-            ], 400);
-        }
+            ],
+        ];
+
+        $sale = $service->processSale($data);
+
+        PosSaleCompleted::dispatch($sale, $user->id, $user->company_id);
+
+        return $this->success(
+            [
+                'id' => $sale->id,
+                'code' => $sale->code,
+                'total' => $sale->total,
+            ],
+            __('POS sale created successfully'),
+            201
+        );
+    }
+
+    /**
+     * Show a single POS sale.
+     */
+    public function show(PosSale $posSale): JsonResponse
+    {
+        $this->authorize('view', $posSale);
+
+        $posSale->load(['items', 'payments', 'customer']);
+
+        return $this->success(
+            $posSale,
+            __('POS sale details retrieved')
+        );
     }
 }
