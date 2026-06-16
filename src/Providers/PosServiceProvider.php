@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Dev3bdulrahman\Pos\Events\PosSaleCompleted;
+use Dev3bdulrahman\Pos\Listeners\LogPosSaleCompleted;
 use Dev3bdulrahman\Pos\Models\PosSale;
 use Dev3bdulrahman\Pos\Policies\PosPolicy;
 use Livewire\Livewire;
@@ -34,6 +35,9 @@ class PosServiceProvider extends ServiceProvider
 
         // Register Policies
         Gate::policy(PosSale::class, PosPolicy::class);
+
+        // Register Event Listeners
+        Event::listen(PosSaleCompleted::class, LogPosSaleCompleted::class);
 
         // Register Livewire Components
         if (class_exists(Livewire::class)) {

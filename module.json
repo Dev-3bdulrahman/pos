@@ -1,0 +1,11 @@
+{
+    "name": "POS",
+    "slug": "pos",
+    "version": "1.0.0",
+    "description": "Point of Sale",
+    "description_ar": "نقاط البيع",
+    "is_active": true,
+    "provider": "Dev3bdulrahman\\Pos\\Providers\\PosServiceProvider",
+    "dependencies": [],
+    "order": 10
+}
