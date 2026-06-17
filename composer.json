@@ -2,7 +2,7 @@
     "name": "dev-3bdulrahman/pos",
     "description": "A Point of Sale (POS) module for Laravel ERP — Terminals, Shifts, Sessions, Sales & Payments.",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "license": "MIT",
     "authors": [
         {
